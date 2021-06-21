@@ -38,4 +38,10 @@ public class HisseController {
     public ResponseEntity<HisseDto> getHisseByHisseId(@PathVariable(name = "hisseId")Long hisseId){
         return  new ResponseEntity(hisseService.getHisseByHisseId(hisseId),HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Delete Hisse By hisseId")
+    @PostMapping(path = "/delete-hisse")
+    public ResponseEntity<HisseDto> deleteHisse(@RequestParam(name = "hisseId")Long hisseId){
+        return new ResponseEntity(hisseService.deleteHisseById(hisseId),HttpStatus.OK);
+    }
 }

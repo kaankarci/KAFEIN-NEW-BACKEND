@@ -12,4 +12,6 @@ public interface HisseService {
     List<HisseDto> getAllHisse();
 
     HisseDto getHisseByHisseId(Long hisseId);
+
+    BaseResponse deleteHisseById(Long hisseId);
 }

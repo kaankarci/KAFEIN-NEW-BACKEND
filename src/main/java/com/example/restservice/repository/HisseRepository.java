@@ -11,4 +11,6 @@ public interface HisseRepository extends JpaRepository<HisseEntity, Long> {
     List<HisseEntity> findByStatus(Boolean status);
 
     HisseEntity findByHisseIdAndStatus(Long hisseId, Boolean status);
+
+
 }

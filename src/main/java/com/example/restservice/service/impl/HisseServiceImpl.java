@@ -5,6 +5,7 @@ import com.example.restservice.model.entity.HisseEntity;
 import com.example.restservice.model.entity.UserEntity;
 import com.example.restservice.model.mapper.HisseMapper;
 import com.example.restservice.model.mapper.UserMapper;
+import com.example.restservice.model.response.BaseResponse;
 import com.example.restservice.repository.HisseRepository;
 import com.example.restservice.service.HisseService;
 import com.example.restservice.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class HisseServiceImpl implements HisseService {
@@ -44,6 +46,23 @@ public class HisseServiceImpl implements HisseService {
     public HisseDto getHisseByHisseId(Long hisseId) {
        final HisseEntity hisseEntity =hisseRepository.findByHisseIdAndStatus(hisseId,true);
         return HisseMapper.INSTANCE.toHisseDto(hisseEntity);
+    }
+
+    @Override
+    public BaseResponse deleteHisseById(Long hisseId) {
+        final HisseEntity hisseEntity = hisseRepository.findByHisseIdAndStatus(hisseId,true);
+        if (Objects.nonNull(hisseEntity)){
+            hisseEntity.setStatus(false);
+            hisseRepository.save(hisseEntity);
+            return BaseResponse.builder()
+                    .messageCode("Success")
+                    .messageText("Silme işlemi başarılı!")
+                    .build();
+        }
+        return BaseResponse.builder()
+                .messageCode("Error")
+                .messageText("Silme işlemi gerçekleştirilemedi!")
+                .build();
     }
 
 }
