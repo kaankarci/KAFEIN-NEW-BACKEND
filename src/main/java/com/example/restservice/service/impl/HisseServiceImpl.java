@@ -2,11 +2,14 @@ package com.example.restservice.service.impl;
 
 import com.example.restservice.model.dto.HisseDto;
 import com.example.restservice.model.entity.HisseEntity;
+import com.example.restservice.model.entity.UserEntity;
 import com.example.restservice.model.mapper.HisseMapper;
+import com.example.restservice.model.mapper.UserMapper;
 import com.example.restservice.repository.HisseRepository;
 import com.example.restservice.service.HisseService;
 import com.example.restservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +38,12 @@ public class HisseServiceImpl implements HisseService {
     public List<HisseDto> getAllHisse() {
         final List<HisseEntity> hisseEntityList = hisseRepository.findByStatus(true);
         return HisseMapper.INSTANCE.toHisseDtoList(hisseEntityList);
+    }
+
+    @Override
+    public HisseDto getHisseByHisseId(Long hisseId) {
+       final HisseEntity hisseEntity =hisseRepository.findByHisseIdAndStatus(hisseId,true);
+        return HisseMapper.INSTANCE.toHisseDto(hisseEntity);
     }
 
 }

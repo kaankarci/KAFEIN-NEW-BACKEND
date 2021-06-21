@@ -32,4 +32,10 @@ public class HisseController {
     public ResponseEntity<HisseDto> getAllHisse(){
         return new ResponseEntity(hisseService.getAllHisse(),HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Get Hisse By hisseId")
+    @GetMapping(path = "/{hisseId}")
+    public ResponseEntity<HisseDto> getHisseByHisseId(@PathVariable(name = "hisseId")Long hisseId){
+        return  new ResponseEntity(hisseService.getHisseByHisseId(hisseId),HttpStatus.OK);
+    }
 }
