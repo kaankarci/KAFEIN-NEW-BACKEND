@@ -46,9 +46,9 @@ public class HisseController {
         return new ResponseEntity(hisseService.deleteHisseById(hisseId),HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Save Hisse v2")
-    @PostMapping(path = "/save-hisse-v2")
-    public ResponseEntity<BaseResponse> createHissev2(@RequestBody HisseDto hisseDto){
-        return new ResponseEntity(hisseService.createHisseByHisseName(hisseDto),HttpStatus.OK);
+    @ApiOperation(value = "Update Hisse")
+    @PostMapping(path = "/update-hisse")
+    public ResponseEntity<BaseResponse> updateHisse(@RequestBody HisseDto hisseDto){
+        return new ResponseEntity(hisseService.updateHisseByHisseName(hisseDto),HttpStatus.OK);
     }
 }

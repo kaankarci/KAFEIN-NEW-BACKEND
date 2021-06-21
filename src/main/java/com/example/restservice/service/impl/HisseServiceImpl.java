@@ -78,7 +78,7 @@ public class HisseServiceImpl implements HisseService {
 
     @Transactional
     @Override
-    public HisseDto createHisseByHisseName(HisseDto hisseDto) {
+    public HisseDto updateHisseByHisseName(HisseDto hisseDto) {
         final HisseEntity hisseEntity = hisseRepository.findByKodAndStatus(hisseDto.getKod(), true);
         if (Objects.isNull(hisseEntity)) {
             throw new GeneralExeption(GeneralResult.builder()

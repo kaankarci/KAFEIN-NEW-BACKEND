@@ -15,5 +15,5 @@ public interface HisseService {
 
     BaseResponse deleteHisseById(Long hisseId);
 
-    HisseDto createHisseByHisseName(HisseDto hisseDto);
+    HisseDto updateHisseByHisseName(HisseDto hisseDto);
 }

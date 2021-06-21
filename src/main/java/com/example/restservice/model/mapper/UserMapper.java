@@ -17,7 +17,7 @@ public interface UserMapper {
 
     List<UserDto> toUserDtoList(List<UserEntity> list);
 
-    List<UserEntity> toUserEntityList(List<UserDto> list);
+    List<UserEntity> toUserEntityList(List<UserDto> list);  //liste ile veri kaydı yapılmadığı için kullanılmadı.
 
 
 }
