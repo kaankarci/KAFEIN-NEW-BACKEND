@@ -9,6 +9,8 @@ import com.example.restservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HisseServiceImpl implements HisseService {
 
@@ -28,4 +30,11 @@ public class HisseServiceImpl implements HisseService {
         hisseRepository.save(hisseEntity);
         return HisseMapper.INSTANCE.toHisseDto(hisseEntity);
     }
+
+    @Override
+    public List<HisseDto> getAllHisse() {
+        final List<HisseEntity> hisseEntityList = hisseRepository.findByStatus(true);
+        return HisseMapper.INSTANCE.toHisseDtoList(hisseEntityList);
+    }
+
 }

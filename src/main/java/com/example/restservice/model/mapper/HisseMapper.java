@@ -5,6 +5,8 @@ import com.example.restservice.model.entity.HisseEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface HisseMapper {
     HisseMapper INSTANCE = Mappers.getMapper(HisseMapper.class);
@@ -12,4 +14,6 @@ public interface HisseMapper {
     HisseDto toHisseDto(HisseEntity source);      //entity türünde dto newler, verileri get ile çeker
 
     HisseEntity toHisseEntity(HisseDto source);   //Dto türünde entity newler,
+
+    List<HisseDto> toHisseDtoList(List<HisseEntity> list);
 }

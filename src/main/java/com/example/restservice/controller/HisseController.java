@@ -26,4 +26,10 @@ public class HisseController {
     public ResponseEntity<HisseDto> createHisse(@RequestBody HisseDto hisseDto){
         return new ResponseEntity(hisseService.createHisse(hisseDto), HttpStatus.OK);
     }
+
+    @ApiOperation(value = "All hisse")
+    @GetMapping(path = "/all-hisse")
+    public ResponseEntity<HisseDto> getAllHisse(){
+        return new ResponseEntity(hisseService.getAllHisse(),HttpStatus.OK);
+    }
 }
