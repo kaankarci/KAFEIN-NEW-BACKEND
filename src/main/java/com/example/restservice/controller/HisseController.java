@@ -1,6 +1,7 @@
 package com.example.restservice.controller;
 
 import com.example.restservice.model.dto.HisseDto;
+import com.example.restservice.model.response.BaseResponse;
 import com.example.restservice.service.HisseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,5 +44,11 @@ public class HisseController {
     @PostMapping(path = "/delete-hisse")
     public ResponseEntity<HisseDto> deleteHisse(@RequestParam(name = "hisseId")Long hisseId){
         return new ResponseEntity(hisseService.deleteHisseById(hisseId),HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Save Hisse v2")
+    @PostMapping(path = "/save-hisse-v2")
+    public ResponseEntity<BaseResponse> createHissev2(@RequestBody HisseDto hisseDto){
+        return new ResponseEntity(hisseService.createHisseByHisseName(hisseDto),HttpStatus.OK);
     }
 }

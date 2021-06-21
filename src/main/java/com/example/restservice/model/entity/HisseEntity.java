@@ -19,7 +19,7 @@ public class HisseEntity {
     @Column(name = "hisseAdi")
     private String hisseAdi;
     @Column(name = "hisseCount")
-    private Long hisseCount;
+    private Integer hisseCount;
     @Column(name = "status")
     private Boolean status;
 }

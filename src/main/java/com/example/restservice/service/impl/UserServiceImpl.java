@@ -10,6 +10,7 @@ import com.example.restservice.repository.UserRepository;
 import com.example.restservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     @Override
     public UserDto createUser(UserDto userDto) {
         final UserEntity userEntity = UserMapper.INSTANCE.toUserEntity(userDto);
@@ -31,18 +33,21 @@ public class UserServiceImpl implements UserService {
         return UserMapper.INSTANCE.toUserDto(userEntity);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public UserDto getUserByUserId(Long userId) {
         final UserEntity userEntity = userRepository.findUserByUserId(userId,true);
         return UserMapper.INSTANCE.toUserDto(userEntity);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<UserDto> getAllUsers() {
         final List<UserEntity> userEntityList = userRepository.findByStatus(true);
         return UserMapper.INSTANCE.toUserDtoList(userEntityList);
     }
 
+    @Transactional
     @Override
     public BaseResponse deleteUserById(Long userId) {
         final UserEntity userEntity = userRepository.findUserByUserId(userId,true);
@@ -54,13 +59,12 @@ public class UserServiceImpl implements UserService {
                     .messageText("Silme işlemi başarılı!")
                     .build();
         }
-
         return BaseResponse.builder()
                 .messageCode("Error!")
                 .messageText("Silinecek eleman bulunamadı!")
                 .build();
     }
-
+    @Transactional
     @Override
     public BaseResponse loginUser(LoginRequest loginRequest) {
         final  UserEntity userEntity = userRepository.findByUsernameAndPassword(loginRequest.getUsername(),loginRequest.getPassword());

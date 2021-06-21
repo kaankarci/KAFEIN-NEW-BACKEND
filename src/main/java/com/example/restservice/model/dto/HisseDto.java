@@ -10,6 +10,6 @@ public class HisseDto {
     private Long hisseId;
     private String kod;
     private String hisseAdi;
-    private Long hisseCount;
+    private Integer hisseCount;
     private Boolean status;
 }
