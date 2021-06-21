@@ -46,7 +46,7 @@ public class HisseServiceImpl implements HisseService {
     public HisseDto getHisseByHisseId(Long hisseId) {
        final HisseEntity hisseEntity =hisseRepository.findByHisseIdAndStatus(hisseId,true);
         return HisseMapper.INSTANCE.toHisseDto(hisseEntity);
-    }
+    } 
 
     @Override
     public BaseResponse deleteHisseById(Long hisseId) {
